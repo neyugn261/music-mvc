@@ -1,12 +1,16 @@
 package models.bean;
 
+import java.sql.Timestamp;
+
 public class Song {
     private int id;
     private String title;
     private int singerId;
     private String audio;
     private String image; // Sửa "imager" thành "image" để nhất quán
-    private String description;
+    private Timestamp createdAt;
+    private String singerName; // Tên nghệ sĩ để hiển thị
+    private String lyrics; // Lời bài hát
 
     public int getId() {
         return id;
@@ -48,11 +52,27 @@ public class Song {
         this.image = image;
     }
 
-    public String getDescription() {
-        return description;
+    public Timestamp getCreatedAt() {
+        return createdAt;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setCreatedAt(Timestamp createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public String getSingerName() {
+        return singerName;
+    }
+
+    public void setSingerName(String singerName) {
+        this.singerName = singerName;
+    }
+
+    public String getLyrics() {
+        return lyrics;
+    }
+
+    public void setLyrics(String lyrics) {
+        this.lyrics = lyrics;
     }
 }

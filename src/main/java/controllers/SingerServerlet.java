@@ -5,15 +5,15 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import models.bean.Song;
-import models.bo.SongBO;
+import models.bean.Singer;
+import models.bo.SingerBO;
 
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/song")
-public class SongServerlet extends HttpServlet {
-    private SongBO songBO = new SongBO();
+@WebServlet("/singer")
+public class SingerServerlet extends HttpServlet {
+    private SingerBO singerBO = new SingerBO();
     private static final int RECORDS_PER_PAGE = 20;
 
     @Override
@@ -33,25 +33,25 @@ public class SongServerlet extends HttpServlet {
                 }
             }
             
-            // Get all songs
-            List<Song> allSongs = songBO.getAllSongs();
-            int totalRecords = allSongs.size();
+            // Get all singers
+            List<Singer> allSingers = singerBO.getAllSinger();
+            int totalRecords = allSingers.size();
             int totalPages = (int) Math.ceil((double) totalRecords / RECORDS_PER_PAGE);
             
             // Calculate pagination
             int start = (currentPage - 1) * RECORDS_PER_PAGE;
             int end = Math.min(start + RECORDS_PER_PAGE, totalRecords);
             
-            // Get songs for current page
-            List<Song> songs = allSongs.subList(start, end);
+            // Get singers for current page
+            List<Singer> singers = allSingers.subList(start, end);
             
             // Set attributes
-            request.setAttribute("songs", songs);
+            request.setAttribute("singers", singers);
             request.setAttribute("currentPage", currentPage);
             request.setAttribute("totalPages", totalPages);
             request.setAttribute("totalRecords", totalRecords);
             
-            request.getRequestDispatcher("allSongs.jsp").forward(request, response);
+            request.getRequestDispatcher("allSingers.jsp").forward(request, response);
         } else {
             response.sendRedirect("home");
         }
